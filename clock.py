@@ -24,7 +24,6 @@ shadow = clock.create_text(
     fill="black",
     font=("Arial", 40, "bold")
 )
-
 digital_clock = clock.create_text(
     250, 140,
     text="",
@@ -37,8 +36,6 @@ shadowAmPm = clock.create_text(
     fill="black",
     font=("Arial", 40, "bold")
 )
-
-#Degital Clock
 digital_clockAmPm = clock.create_text(
     250, 190,
     text="",
