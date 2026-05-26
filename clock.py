@@ -31,13 +31,27 @@ digital_clock = clock.create_text(
     fill="#FFFFFF",
     font=("Arial", 40,"bold")
 )
+shadowAmPm = clock.create_text(
+    253, 193,
+    text="",
+    fill="black",
+    font=("Arial", 40, "bold")
+)
 
+#Degital Clock
+digital_clockAmPm = clock.create_text(
+    250, 190,
+    text="",
+    fill="#FFFFFF",
+    font=("Arial", 40,"bold")
+)
 def updateTime():
     nowTime = time.strftime("%I:%M", time.localtime())
 
     clock.itemconfig(digital_clock, text=nowTime)
     clock.itemconfig(shadow, text=nowTime)
-
+    clock.itemconfig(digital_clockAmPm, text=ampm)
+    clock.itemconfig(shadowAmPm, text=ampm)
     window.after(1000, updateTime)
 
 updateTime()
