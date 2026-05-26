@@ -67,6 +67,6 @@ class ClockWise:
         self.canvas.delete(self.title)
 
         self.function(*new_cordinate,width = self.width,tags = self.title,fill = self.color)
-        
-        
+        self.canvas.create_oval(240,240,260,260,fill="black")
+            
         self.canvas.after(1000, lambda: self.Active(focuspoint))
