@@ -11,7 +11,7 @@ clock.pack()
 
 #Analog Clock frame
 
-img = Image.open(r"I:\1. music\pythonProject\clock\clock_frame.png")
+img = Image.open("clock_frame.png")
 img = img.resize((500, 500))
 analog_clock_photo = ImageTk.PhotoImage(img)
 clock.create_image(250, 250, image=analog_clock_photo)
