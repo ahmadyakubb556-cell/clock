@@ -16,13 +16,15 @@ img = img.resize((500, 500))
 analog_clock_photo = ImageTk.PhotoImage(img)
 clock.create_image(250, 250, image=analog_clock_photo)
 
+#Degital Clock
+
 shadow = clock.create_text(
     253, 143,
     text="",
     fill="black",
     font=("Arial", 40, "bold")
 )
-#Degital Clock
+
 digital_clock = clock.create_text(
     250, 140,
     text="",
@@ -39,6 +41,7 @@ def updateTime():
     window.after(1000, updateTime)
 
 updateTime()
+
 #Analog Clock wise
 
 hour = ClockWise(clock,"hour","rectengular",[250,140,240,250,250,270,260,250],"#000000",0)#canvas,title,shape,cordinate,color,width
