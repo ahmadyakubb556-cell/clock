@@ -1,23 +1,54 @@
 from tkinter import *
-from PIL import Image,ImageTk # type: ignore
+from PIL import Image, ImageTk
 from clockwise import ClockWise
+import time
 
 window = Tk()
-window.config(background="#F8F9FE")
-clock_frame = Canvas(width=500,height=500,bg="#F8F9FE")
-clock_frame.pack()
+window.title("Clock")
 
-#clock frame
-original_img = Image.open("clock_frame.png")
-tk_img = ImageTk.PhotoImage(original_img)
-clock_frame.create_image(250, 250, image=tk_img)
-#end
+clock = Canvas(window, width=500, height=500, bg="white")
+clock.pack()
 
-Second = ClockWise(clock_frame,"second",[251,300,251,90],"black",1)
-Second.Active(180,[251,250])
-Minute = ClockWise(clock_frame,"minute",[251,280,251,105],"black",3)
-Minute.Active(180,[251,250])
-Hour = ClockWise(clock_frame,"hour",[251,270,251,120],"black",8)
-Hour.Active(180,[251,250])
+#Analog Clock frame
+
+img = Image.open(r"I:\1. music\pythonProject\clock\clock_frame.png")
+img = img.resize((500, 500))
+analog_clock_photo = ImageTk.PhotoImage(img)
+clock.create_image(250, 250, image=analog_clock_photo)
+
+shadow = clock.create_text(
+    253, 143,
+    text="",
+    fill="black",
+    font=("Arial", 40, "bold")
+)
+#Degital Clock
+digital_clock = clock.create_text(
+    250, 140,
+    text="",
+    fill="#FFFFFF",
+    font=("Arial", 40,"bold")
+)
+
+def updateTime():
+    nowTime = time.strftime("%I:%M", time.localtime())
+
+    clock.itemconfig(digital_clock, text=nowTime)
+    clock.itemconfig(shadow, text=nowTime)
+
+    window.after(1000, updateTime)
+
+updateTime()
+#Analog Clock wise
+
+hour = ClockWise(clock,"hour","rectengular",[250,140,240,250,250,270,260,250],"#000000",0)#canvas,title,shape,cordinate,color,width
+hour.Active([250,250])
+
+minute = ClockWise(clock,"minute","rectengular",[250,110,245,250,250,275,255,250],"#0000FF",0)#canvas,title,shape,cordinate,color,width
+minute.Active([250,250])
+
+second = ClockWise(clock,"second","line",[250,90,250,280],"#FF0000",2)#canvas,title,shape,cordinate,color,width
+second.Active([250,250])
+
 
 window.mainloop()
